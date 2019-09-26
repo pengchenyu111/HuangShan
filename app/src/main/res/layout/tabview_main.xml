@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="8dp"
+    android:background="#ffeeeeee"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom">
+
+    <com.example.huangshan.view.TabView
+        android:id="@+id/tab_home"
+        app:tabImage="@mipmap/weixin_normal"
+        app:tabSelectedImage="@mipmap/weixin_pressed"
+        app:tabColor="#FF45C01A"
+        app:tabTitle="首页"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+    <com.example.huangshan.view.TabView
+        android:id="@+id/tab_community"
+        app:tabImage="@mipmap/contact_list_normal"
+        app:tabSelectedImage="@mipmap/contact_list_pressed"
+        app:tabColor="#FF45C01A"
+        app:tabTitle="社区"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+    <com.example.huangshan.view.TabView
+        android:id="@+id/tab_help"
+        app:tabImage="@mipmap/find_normal"
+        app:tabSelectedImage="@mipmap/find_pressed"
+        app:tabColor="#FF45C01A"
+        app:tabTitle="求助"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+    <com.example.huangshan.view.TabView
+        android:id="@+id/tab_me"
+        app:tabImage="@mipmap/profile_normal"
+        app:tabSelectedImage="@mipmap/profile_pressed"
+        app:tabColor="#FF45C01A"
+        app:tabTitle="我"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+</LinearLayout>

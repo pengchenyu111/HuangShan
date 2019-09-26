@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp">
+
+    <TextView
+        android:id="@+id/weather_forecast_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="2"
+        android:textColor="#fff"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <ImageView
+            android:id="@+id/weather_forecast_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/weather_forecast_cond_txt_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="#fff"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/weather_forecast_tmp_max"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:textColor="#fff"/>
+
+    <TextView
+        android:id="@+id/weather_forecast_tmp_min"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:textColor="#fff"/>
+
+</LinearLayout>
