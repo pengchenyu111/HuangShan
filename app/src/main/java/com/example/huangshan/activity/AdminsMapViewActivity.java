@@ -108,7 +108,8 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
 //        LOCATION_TYPE_LOCATION_ROTATE:系统默认，连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）
 //        LOCATION_TYPE_SHOW) ;定位一次
 //        LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER ：连续定位、蓝点不会移动到地图中心点，定位点依照设备方向旋转，并且蓝点会跟随设备移动
-        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_SHOW);
+//        LOCATION_TYPE_MAP_ROTATE_NO_CENTER : 同上，但地图有倾斜度，偏向于步行导航时
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER);
         myLocationStyle.strokeColor(Color.argb(0,0,0,0));//精度圈 圈框隐藏
         myLocationStyle.radiusFillColor(Color.argb(0,0,0,0));//精度圈 圈范围隐藏
         aMap.setMyLocationStyle(myLocationStyle);
