@@ -21,14 +21,14 @@ import butterknife.ButterKnife;
 /**
  * MainActivity中首页的fragment
  */
-public class HomeFragment extends Fragment implements View.OnClickListener{
+public class ShowDataFragment extends Fragment implements View.OnClickListener{
 
     private View view;
 
     @BindView(R.id.weather) Button weatherBtn;
     @BindView(R.id.admins_map_view_btn) Button adminsMapViewBtn;
 
-    public HomeFragment() {
+    public ShowDataFragment() {
         // Required empty public constructor
     }
 
@@ -36,7 +36,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        加载HomeFragment布局
-        view = inflater.inflate(R.layout.fragment_main_home,container,false);
+        view = inflater.inflate(R.layout.fragment_main_showdata,container,false);
 //        绑定控件
         ButterKnife.bind(this,view);
 //        设置响应

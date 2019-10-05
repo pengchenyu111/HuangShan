@@ -15,10 +15,10 @@ import com.example.huangshan.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CommunityFragment extends Fragment {
+public class PredictFragment extends Fragment {
 
 
-    public CommunityFragment() {
+    public PredictFragment() {
         // Required empty public constructor
     }
 

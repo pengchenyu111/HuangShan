@@ -7,7 +7,8 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.example.huangshan.CustomVideoView;
+import com.example.huangshan.fragment.AdminLoginFragment;
+import com.example.huangshan.view.CustomVideoView;
 import com.example.huangshan.R;
 import com.example.huangshan.fragment.UserLoginFragment;
 
@@ -26,7 +27,8 @@ public class LoginActivity extends BaseActivity {
 //        显示第三方登录界面  第一个fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        UserLoginFragment fragment = new UserLoginFragment();//添加第三方的fragment
+//        UserLoginFragment fragment = new UserLoginFragment();//添加第三方的fragment
+        AdminLoginFragment fragment = new AdminLoginFragment();
         fragmentTransaction.add(R.id.fragment_container,fragment);
         fragmentTransaction.commit();
 //      初始化背景视频

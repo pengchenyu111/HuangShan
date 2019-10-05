@@ -228,7 +228,6 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
 
     /**
      * 以下重写的方法是控制地图的生命周期，因为地图占的内存相当大
-     * <p>
      * 官方文档要求重写
      */
     @Override

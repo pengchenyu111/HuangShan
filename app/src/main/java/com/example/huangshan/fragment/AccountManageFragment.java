@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.huangshan.R;
 import com.example.huangshan.activity.LoginActivity;
@@ -21,12 +20,12 @@ import butterknife.ButterKnife;
 /**
  * MainActivity中  我  的fragment
  */
-public class MeFragment extends Fragment implements View.OnClickListener{
+public class AccountManageFragment extends Fragment implements View.OnClickListener{
 
     @BindView(R.id.test_me) Button loginTest;
     private View view;
 
-    public MeFragment() {
+    public AccountManageFragment() {
         // Required empty public constructor
     }
 
@@ -34,7 +33,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        加载布局
-        view = inflater.inflate(R.layout.fragment_main_me,container,false);
+        view = inflater.inflate(R.layout.fragment_main_accountmanage,container,false);
 //        绑定控件
         ButterKnife.bind(this,view);
 //        设置事件响应

@@ -9,38 +9,38 @@
     android:layout_gravity="bottom">
 
     <com.example.huangshan.view.TabView
-        android:id="@+id/tab_home"
-        app:tabImage="@mipmap/weixin_normal"
-        app:tabSelectedImage="@mipmap/weixin_pressed"
+        android:id="@+id/tab_showdata"
+        app:tabImage="@mipmap/chart_normal"
+        app:tabSelectedImage="@mipmap/chart_selected"
         app:tabColor="#FF45C01A"
-        app:tabTitle="首页"
+        app:tabTitle="数据"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
     <com.example.huangshan.view.TabView
-        android:id="@+id/tab_community"
-        app:tabImage="@mipmap/contact_list_normal"
-        app:tabSelectedImage="@mipmap/contact_list_pressed"
+        android:id="@+id/tab_predict"
+        app:tabImage="@mipmap/predict_normal"
+        app:tabSelectedImage="@mipmap/predict_selected"
         app:tabColor="#FF45C01A"
-        app:tabTitle="社区"
+        app:tabTitle="预测"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
     <com.example.huangshan.view.TabView
-        android:id="@+id/tab_help"
-        app:tabImage="@mipmap/find_normal"
-        app:tabSelectedImage="@mipmap/find_pressed"
+        android:id="@+id/tab_notification"
+        app:tabImage="@mipmap/notification_normal"
+        app:tabSelectedImage="@mipmap/notification_selected"
         app:tabColor="#FF45C01A"
-        app:tabTitle="求助"
+        app:tabTitle="通知"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
     <com.example.huangshan.view.TabView
-        android:id="@+id/tab_me"
+        android:id="@+id/tab_accountmanage"
         app:tabImage="@mipmap/profile_normal"
         app:tabSelectedImage="@mipmap/profile_pressed"
         app:tabColor="#FF45C01A"
-        app:tabTitle="我"
+        app:tabTitle="账户"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>

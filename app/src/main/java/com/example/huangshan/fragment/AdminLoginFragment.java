@@ -14,10 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.huangshan.Constant;
-import com.example.huangshan.CustomVideoView;
+import com.example.huangshan.view.CustomVideoView;
 import com.example.huangshan.utils.HttpUtil;
 import com.example.huangshan.R;
-import com.example.huangshan.gson.LoginMsg;
+import com.example.huangshan.bean.LoginMsg;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -81,8 +81,9 @@ public class AdminLoginFragment extends Fragment {
         adminBack.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.popBackStack();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                fragmentManager.popBackStack();
+                getActivity().finish();
             }
         });
 

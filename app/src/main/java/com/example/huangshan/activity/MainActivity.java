@@ -14,10 +14,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.huangshan.R;
-import com.example.huangshan.fragment.CommunityFragment;
-import com.example.huangshan.fragment.HelpFragment;
-import com.example.huangshan.fragment.HomeFragment;
-import com.example.huangshan.fragment.MeFragment;
+import com.example.huangshan.fragment.PredictFragment;
+import com.example.huangshan.fragment.NotificationFragment;
+import com.example.huangshan.fragment.ShowDataFragment;
+import com.example.huangshan.fragment.AccountManageFragment;
 import com.example.huangshan.view.TabView;
 
 import java.util.ArrayList;
@@ -27,8 +27,6 @@ import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 
 /**
@@ -42,20 +40,20 @@ public class MainActivity extends BaseActivity {
 
     @BindArray(R.array.tab_array) String[] mTabTitles;
 
-    @BindView(R.id.tab_home) TabView mTabHome;
+    @BindView(R.id.tab_showdata) TabView mTabShowData;
 
-    @BindView(R.id.tab_community) TabView mTabCommunity;
+    @BindView(R.id.tab_predict) TabView mTabPredict;
 
-    @BindView(R.id.tab_help) TabView mTabHelp;
+    @BindView(R.id.tab_notification) TabView mTabNotification;
 
-    @BindView(R.id.tab_me) TabView mTabMe;
+    @BindView(R.id.tab_accountmanage) TabView mTabAccountManage;
 
     private List<TabView> mTabViews = new ArrayList<>();
 
-    private static final int INDEX_HOME = 0;
-    private static final int INDEX_COMMUNITY = 1;
-    private static final int INDEX_HELP = 2;
-    private static final int INDEX_ME = 3;
+    private static final int INDEX_SHOWDATA = 0;
+    private static final int INDEX_PREDICT = 1;
+    private static final int INDEX_NOTIFICATION = 2;
+    private static final int INDEX_ACCOUNTMANAGE = 3;
 
     private static final int M_PERMISSION_CODE = 1001;
     private String[] mPermissions = {
@@ -75,10 +73,10 @@ public class MainActivity extends BaseActivity {
 
         askPermissions();
 
-        mTabViews.add(mTabHome);
-        mTabViews.add(mTabCommunity);
-        mTabViews.add(mTabHelp);
-        mTabViews.add(mTabMe);
+        mTabViews.add(mTabShowData);
+        mTabViews.add(mTabPredict);
+        mTabViews.add(mTabNotification);
+        mTabViews.add(mTabAccountManage);
 
         mViewPager.setOffscreenPageLimit(mTabTitles.length - 1);
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
@@ -111,26 +109,26 @@ public class MainActivity extends BaseActivity {
     }
 
 //  以注解的形式设置导航栏下面的响应
-    @OnClick({R.id.tab_home, R.id.tab_community, R.id.tab_help, R.id.tab_me})
+    @OnClick({R.id.tab_showdata, R.id.tab_predict, R.id.tab_notification, R.id.tab_accountmanage})
     public void onClickTab(View v) {
         switch (v.getId()) {
-            case R.id.tab_home:
-                mViewPager.setCurrentItem(INDEX_HOME, false);
-                updateCurrentTab(INDEX_HOME);
+            case R.id.tab_showdata:
+                mViewPager.setCurrentItem(INDEX_SHOWDATA, false);
+                updateCurrentTab(INDEX_SHOWDATA);
                 break;
-            case R.id.tab_community:
-                mViewPager.setCurrentItem(INDEX_COMMUNITY, false);
-                updateCurrentTab(INDEX_COMMUNITY);
-                break;
-
-            case R.id.tab_help:
-                mViewPager.setCurrentItem(INDEX_HELP, false);
-                updateCurrentTab(INDEX_HELP);
+            case R.id.tab_predict:
+                mViewPager.setCurrentItem(INDEX_PREDICT, false);
+                updateCurrentTab(INDEX_PREDICT);
                 break;
 
-            case R.id.tab_me:
-                mViewPager.setCurrentItem(INDEX_ME, false);
-                updateCurrentTab(INDEX_ME);
+            case R.id.tab_notification:
+                mViewPager.setCurrentItem(INDEX_NOTIFICATION, false);
+                updateCurrentTab(INDEX_NOTIFICATION);
+                break;
+
+            case R.id.tab_accountmanage:
+                mViewPager.setCurrentItem(INDEX_ACCOUNTMANAGE, false);
+                updateCurrentTab(INDEX_ACCOUNTMANAGE);
                 break;
         }
     }
@@ -154,17 +152,17 @@ public class MainActivity extends BaseActivity {
     private Fragment getTabFragment(int index,String title){
         Fragment fragment = null;
         switch (index){
-            case INDEX_HOME:
-                fragment = new HomeFragment();
+            case INDEX_SHOWDATA:
+                fragment = new ShowDataFragment();
                 break;
-            case INDEX_COMMUNITY:
-                fragment = new CommunityFragment();
+            case INDEX_PREDICT:
+                fragment = new PredictFragment();
                 break;
-            case INDEX_HELP:
-                fragment = new HelpFragment();
+            case INDEX_NOTIFICATION:
+                fragment = new NotificationFragment();
                 break;
-            case INDEX_ME:
-                fragment = new MeFragment();
+            case INDEX_ACCOUNTMANAGE:
+                fragment = new AccountManageFragment();
                 break;
                 default:
                     break;

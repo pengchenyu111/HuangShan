@@ -1,4 +1,4 @@
-package com.example.huangshan.gson;
+package com.example.huangshan.bean;
 
 /**
  * 用于处理管理员登陆请求，服务器返回的json数据对应的实体类

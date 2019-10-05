@@ -1,4 +1,4 @@
-package com.example.huangshan;
+package com.example.huangshan.view;
 
 import android.content.Context;
 import android.media.MediaPlayer;
