@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OneLineView">
+        <attr name="iv_left_icon" format="reference"/>
+        <attr name="tv_text_content" format="string"/>
+        <attr name="edit_content" format="string"/>
+        <attr name="tv_right_text" format="string"/>
+        <attr name="iv_right_icon" format="boolean"/>
+        <attr name="divider_top" format="boolean"/>
+        <attr name="divider_bottom" format="boolean"/>
+    </declare-styleable>
+</resources>

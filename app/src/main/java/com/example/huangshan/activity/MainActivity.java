@@ -49,6 +49,7 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.tab_accountmanage) TabView mTabAccountManage;
 
     private List<TabView> mTabViews = new ArrayList<>();
+    private List<Fragment> fragmentsCollector = new ArrayList<>();
 
     private static final int INDEX_SHOWDATA = 0;
     private static final int INDEX_PREDICT = 1;
@@ -73,6 +74,8 @@ public class MainActivity extends BaseActivity {
 
         askPermissions();
 
+        initFragmentCollector();
+
         mTabViews.add(mTabShowData);
         mTabViews.add(mTabPredict);
         mTabViews.add(mTabNotification);
@@ -96,6 +99,17 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+    }
+
+    private void initFragmentCollector() {
+        Fragment fragment1 = new ShowDataFragment();
+        Fragment fragment2 = new PredictFragment();
+        Fragment fragment3 = new NotificationFragment();
+        Fragment fragment4 = new AccountManageFragment();
+        fragmentsCollector.add(fragment1);
+        fragmentsCollector.add(fragment2);
+        fragmentsCollector.add(fragment3);
+        fragmentsCollector.add(fragment4);
     }
 
     private void updateCurrentTab(int index) {
@@ -153,21 +167,34 @@ public class MainActivity extends BaseActivity {
         Fragment fragment = null;
         switch (index){
             case INDEX_SHOWDATA:
-                fragment = new ShowDataFragment();
+//                fragment = new ShowDataFragment();
+//                removeUselessFragment(fragment);
+                fragment=fragmentsCollector.get(0);
                 break;
             case INDEX_PREDICT:
-                fragment = new PredictFragment();
+//                fragment = new PredictFragment();
+//                removeUselessFragment(fragment);
+                fragment=fragmentsCollector.get(1);
                 break;
             case INDEX_NOTIFICATION:
-                fragment = new NotificationFragment();
+//                fragment = new NotificationFragment();
+//                removeUselessFragment(fragment);
+                fragment=fragmentsCollector.get(2);
                 break;
             case INDEX_ACCOUNTMANAGE:
-                fragment = new AccountManageFragment();
+//                fragment = new AccountManageFragment();
+//                removeUselessFragment(fragment);
+                fragment=fragmentsCollector.get(3);
                 break;
                 default:
                     break;
         }
         return fragment;
+    }
+
+    private void removeUselessFragment(Fragment fragment) {
+        fragmentsCollector.clear();
+        fragmentsCollector.add(fragment);
     }
 
     /**

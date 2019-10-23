@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import com.example.huangshan.R;
 import com.example.huangshan.activity.AdminsMapViewActivity;
+import com.example.huangshan.activity.LoginActivity;
 import com.example.huangshan.activity.WeatherActivity;
 
 import butterknife.BindView;
@@ -27,6 +28,7 @@ public class ShowDataFragment extends Fragment implements View.OnClickListener{
 
     @BindView(R.id.weather) Button weatherBtn;
     @BindView(R.id.admins_map_view_btn) Button adminsMapViewBtn;
+    @BindView(R.id.login_test) Button loginTest;
 
     public ShowDataFragment() {
         // Required empty public constructor
@@ -42,6 +44,7 @@ public class ShowDataFragment extends Fragment implements View.OnClickListener{
 //        设置响应
         weatherBtn.setOnClickListener(this);
         adminsMapViewBtn.setOnClickListener(this);
+        loginTest.setOnClickListener(this);
 
         return view;
     }
@@ -56,6 +59,10 @@ public class ShowDataFragment extends Fragment implements View.OnClickListener{
             case R.id.admins_map_view_btn:
                 Intent intent1 = new Intent(getActivity(), AdminsMapViewActivity.class);
                 startActivity(intent1);
+                break;
+            case R.id.login_test:
+                Intent intent2 = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent2);
                 break;
                 default:
                     break;

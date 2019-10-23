@@ -18,4 +18,11 @@
         android:text="管理员分景点展示"
         android:textSize="25dp"/>
 
+    <Button
+        android:id="@+id/login_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登录测试"
+        android:textSize="25dp"/>
+
 </LinearLayout>

@@ -27,7 +27,7 @@ android {
         sourceCompatibility = '1.8'
     }
     sourceSets {
-        main{
+        main {
             jniLibs.srcDirs = ['libs']
         }
     }

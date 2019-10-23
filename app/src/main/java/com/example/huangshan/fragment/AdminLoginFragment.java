@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.example.huangshan.Constant;
 import com.example.huangshan.view.CustomVideoView;
@@ -64,11 +63,13 @@ public class AdminLoginFragment extends Fragment {
                     Gson gson = new Gson();
                     LoginMsg msg = gson.fromJson(result,LoginMsg.class);
 
-                    String resMsg = msg.getResMsg();
-                    if ("OK".equals(resMsg)){
+                    String resultCode = msg.getResultCode();
+                    if ("001".equals(resultCode)){
                         Toast.makeText(getActivity(),"登录成功",Toast.LENGTH_SHORT).show();
-                    }else{
+                    }else if ("002".equals(resultCode)){
                         Toast.makeText(getActivity(),"账号或密码错误",Toast.LENGTH_SHORT).show();
+                    }else if ("003".equals(resultCode)){
+                        Toast.makeText(getActivity(),"账号或密码不能为空",Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -93,10 +94,10 @@ public class AdminLoginFragment extends Fragment {
     private String adminLogin(String adminAccount, String adminPassword) throws Exception{
 //        使用POST方式，则用map封装请求参数
         Map<String,String> map = new HashMap<>();
-        map.put("account",adminAccount);
-        map.put("password",adminPassword);
+        map.put("adminAccount",adminAccount);
+        map.put("adminPassword",adminPassword);
 //        发请求
-        String url = Constant.URL + "LoginServlet";
+        String url = Constant.URL + "AdminLoginServlet";
         return HttpUtil.postRequest(url,map);
 
 //        若使用GET方式

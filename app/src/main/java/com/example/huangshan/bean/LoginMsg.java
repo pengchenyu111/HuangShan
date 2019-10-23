@@ -5,24 +5,24 @@ package com.example.huangshan.bean;
  */
 public class LoginMsg {
 //    返回码
-    private String resCode;
+    private String resultCode;
 //    返回消息
-    private String resMsg;
+    private String resultMessage;
 
 
-    public String getResCode() {
-        return resCode;
+    public String getResultCode() {
+        return resultCode;
     }
 
-    public void setResCode(String resCode) {
-        this.resCode = resCode;
+    public void setResultCode(String resultCode) {
+        this.resultCode = resultCode;
     }
 
-    public String getResMsg() {
-        return resMsg;
+    public String getResultMessage() {
+        return resultMessage;
     }
 
-    public void setResMsg(String resMsg) {
-        this.resMsg = resMsg;
+    public void setResultMessage(String resultMessage) {
+        this.resultMessage = resultMessage;
     }
 }
