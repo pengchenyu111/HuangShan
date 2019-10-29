@@ -2,8 +2,10 @@ package com.example.huangshan.activity;
 
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -53,6 +55,8 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
     ImageView adminMapBackBtn;
     @BindView(R.id.admins_map_view)
     MapView mapView;
+    @BindView(R.id.show_admin_list)
+    TextView showAdminList;
 
     private static final String TAG = "AdminsMapViewActivity";
     private AMap aMap;
@@ -77,7 +81,8 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
 //        绑定控件
         ButterKnife.bind(this);
 //        设置响应
-        adminMapBackBtn.setOnClickListener(this);
+        adminMapBackBtn.setOnClickListener(this::onClick);
+        showAdminList.setOnClickListener(this::onClick);
 
         mapView.onCreate(savedInstanceState);
 
@@ -138,7 +143,7 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
         //参数三 ：表示POI搜索区域，可以是城市编码也可以是城市名称，也可以传空字符串，空字符串代表全国在全国范围内进行搜索
         query = new PoiSearch.Query("",Constant.POI_SCENERY,Constant.HUANGSHAN_ADCODE);
 //        设置每页最多返回多少条poiitem,和当前页码
-        query.setPageSize(10);
+        query.setPageSize(30);
         query.setPageNum(1);
         query.setCityLimit(true);
         search = new PoiSearch(this,query);
@@ -204,7 +209,7 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
             Marker marker = aMap.addMarker(markerOptions);
 
 
-            Log.d(TAG,poiItem.getTitle()+","+poiItem.getLatLonPoint().getLatitude()+","+poiItem.getLatLonPoint().getLongitude());
+            Log.d(TAG,poiItem.getTitle()+","+poiItem.getLatLonPoint().getLatitude()+","+poiItem.getLatLonPoint().getLongitude()+","+poiItem.getPoiId());
         }
     }
 
@@ -218,6 +223,11 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
 
     private void showPopUpWindow(Marker marker) {
         Log.d(TAG,"开始绘制popupwindow");
+
+        // 绘制前先清除之前的popupwindow，否则内存泄漏
+        if (mPopupWindow != null){
+            mPopupWindow.dismiss();
+        }
         //初始化PopUpWindow
         View popupwindowView = LayoutInflater.from(AdminsMapViewActivity.this).inflate(R.layout.layout_adminmap_pop,null);
         mPopupWindow = new PopupWindow(popupwindowView);
@@ -225,7 +235,7 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
         mPopupWindow.setHeight(getWindowManager().getDefaultDisplay().getHeight()*1/4);
         mPopupWindow.setFocusable(false);
 
-        //加到附布局中
+        //加到父布局中
         View rootView = LayoutInflater.from(AdminsMapViewActivity.this).inflate(R.layout.activity_admins_map_view,null);
         mPopupWindow.showAtLocation(rootView, Gravity.BOTTOM,0,0);
 
@@ -251,14 +261,41 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.admins_map_view_back_btn:
+                //退出当前Activity记得关闭弹出的组件，否则内存泄漏
+                if (mPopupWindow != null){
+                    mPopupWindow.dismiss();
+                }
                 finish();
                 break;
+            case R.id.show_admin_list:
+                // 加载进入ListAdminActivity,显示所有管理员的列表
+                turnToListAdminActivity();
+                break;
             case R.id.admin_popupwindow_close:
+                //点击弹出窗的关闭按钮，关闭弹出窗
                 mPopupWindow.dismiss();
                 break;
-
+            case R.id.call_admin:
+                //弹出窗中给管理员打电话
+                callAdmin();
+                break;
+            case R.id.lookover_admin_info:
+                //弹出窗中点击获取管理员的详细信息
+                break;//todo
             default:break;
         }
+    }
+
+    private void turnToListAdminActivity() {
+        Intent intent = new Intent(AdminsMapViewActivity.this, ListAdminsActivity.class);
+        startActivity(intent);
+    }
+
+    private void callAdmin() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:18224464804"));//todo
+        startActivity(intent);
     }
 
 //    /**
@@ -300,6 +337,10 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
         super.onDestroy();
         //在activity执行onDestroy时执行mMapView.onDestroy()，销毁地图
         mapView.onDestroy();
+        //若 popupwindow 未关闭就退出，会导致android.view.WindowLeaked异常
+        if (mPopupWindow != null){
+            mPopupWindow.dismiss();
+        }
     }
 
     @Override

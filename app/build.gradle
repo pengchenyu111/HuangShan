@@ -63,4 +63,7 @@ dependencies {
     implementation files('libs/HeWeather_Public_Android_V3.1.jar')
     //      高德地图SDK
     implementation files('libs/AMap3DMap_6.9.4_AMapNavi_6.9.1_AMapSearch_6.9.2_AMapTrack_1.1.0_AMapLocation_4.7.0_20190831.jar')
+    // SwipeLayout 开源侧滑工具
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
 }

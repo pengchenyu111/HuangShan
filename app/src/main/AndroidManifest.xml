@@ -23,7 +23,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.UsersManageActivity"></activity>
+        <activity android:name=".activity.ListAdminsActivity"></activity>
+        <activity android:name=".activity.AdminInformationActivity" />
+        <activity android:name=".activity.UsersManageActivity" />
         <activity android:name=".activity.AdminsMapViewActivity" />
 
         <meta-data
