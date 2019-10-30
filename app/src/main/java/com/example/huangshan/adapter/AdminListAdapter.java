@@ -3,7 +3,6 @@ package com.example.huangshan.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,9 @@ import android.widget.Toast;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.daimajia.swipe.SwipeLayout;
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter;
 import com.example.huangshan.R;
+import com.daimajia.swipe.SwipeLayout;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class AdminListAdapter extends RecyclerSwipeAdapter<AdminListAdapter.Admi
 
         public AdminViewHolder(View itemView) {
             super(itemView);
-            swipeLayout = (SwipeLayout) itemView.findViewById(R.id.admin_list_root);
+            swipeLayout = itemView.findViewById(R.id.admin_list_root);
             infoRoot = itemView.findViewById(R.id.item_info_root);
             adminHeadIcon = itemView.findViewById(R.id.admin_list_headicon);
             adminName = itemView.findViewById(R.id.admin_list_name);

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:background="@color/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <SearchView
+            android:id="@+id/search_view"
+            android:background="@color/search_bar"
+            android:iconifiedByDefault="false"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:queryBackground="@null"
+            android:showDividers="none"
+            android:submitBackground="@null"
+            android:layout_weight="4"/>
+
+        <ImageView
+            android:background="@color/search_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/email" />
+
+    </LinearLayout>
+
+
+
+    <include layout="@layout/notification_send_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_bar"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/circle_add"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
+
+</RelativeLayout>

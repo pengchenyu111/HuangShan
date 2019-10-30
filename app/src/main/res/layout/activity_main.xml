@@ -9,7 +9,8 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/bottom_tab" />
+        android:layout_above="@id/bottom_tab"
+        />
     <LinearLayout
         android:id="@+id/bottom_tab"
         android:layout_alignParentBottom="true"
@@ -17,6 +18,5 @@
         android:layout_height="wrap_content">
         <include layout="@layout/tabview_main" />
     </LinearLayout>
-
 
 </RelativeLayout>
