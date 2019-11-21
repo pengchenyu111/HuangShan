@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
     package="com.example.huangshan">
     <!-- 网络访问权限 -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 允许程序设置内置sd卡的写权限 -->
@@ -22,7 +25,9 @@
         android:label="黄山"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:replace="android:icon,android:theme,android:allowBackup,android:label,android:supportsRtl">
         <activity android:name=".activity.ListAdminsActivity"></activity>
         <activity android:name=".activity.AdminInformationActivity" />
         <activity android:name=".activity.UsersManageActivity" />
@@ -30,7 +35,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="ec27927bb12b8181114858ee8776a4f0" />
+            android:value="71481f00fd1eb591faa63622c7b66345" />
 
         <service android:name="com.amap.api.location.APSService" />
 

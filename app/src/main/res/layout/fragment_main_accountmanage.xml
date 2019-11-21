@@ -5,268 +5,268 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="200dp"
+      android:gravity="center"
+      android:layout_margin="8dp"
+      android:background="@mipmap/user_icon_bcg1">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/headicon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="2dp"/>
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:background="@mipmap/user_icon_bcg1">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/headicon"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="2dp"/>
+        app:cardCornerRadius="5dp"
+        app:cardElevation="1dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
 
-    </LinearLayout>
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+        <!--管理员部分的容器-->
+        <LinearLayout
+            android:id="@+id/ll_root1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+          <!--item左边的Icon-->
+          <ImageView
+              android:id="@+id/admin_left_icon"
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@mipmap/admins"/>
+
+          <!--item中间部分的文字-->
+          <TextView
+              android:id="@+id/admin_text_content"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="12dp"
+              android:layout_weight="1"
+              android:textSize="16sp"
+              android:text="管理员账户管理"/>
+
+
+
+          <!--item右边的文字-->
+          <TextView
+              android:id="@+id/admin_right_text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="14sp" />
+
+          <!--item右边的Icon 默认是向右的箭头-->
+          <ImageView
+              android:id="@+id/admin_right_icon"
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@mipmap/homepage_right_arrow" />
+        </LinearLayout>
+
+        <!--下分割线-->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#E0E0E0" />
+
+        <!--游客部分的容器-->
+        <LinearLayout
+            android:id="@+id/ll_root2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
+
+          <!--item左边的Icon-->
+          <ImageView
+              android:id="@+id/user_left_icon"
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@mipmap/users"/>
+
+          <!--item中间部分的文字-->
+          <TextView
+              android:id="@+id/user_text_content"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="12dp"
+              android:layout_weight="1"
+              android:textSize="16sp"
+              android:text="游客账户管理"/>
+
+
+          <!--item右边的文字-->
+          <TextView
+              android:id="@+id/user_right_text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="14sp" />
+
+          <!--item右边的Icon 默认是向右的箭头-->
+          <ImageView
+              android:id="@+id/user_right_icon"
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@mipmap/homepage_right_arrow" />
+        </LinearLayout>
+
+        <!--下分割线-->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#E0E0E0" />
+      </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="1dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
 
-        <androidx.cardview.widget.CardView
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+        <!--管理员部分的容器-->
+        <LinearLayout
+            android:id="@+id/ll_root3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="1dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true">
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!--管理员部分的容器-->
-                <LinearLayout
-                    android:id="@+id/ll_root1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp">
+          <!--item左边的Icon-->
+          <ImageView
+              android:id="@+id/setting_left_icon"
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@mipmap/setting_icon"/>
 
-                    <!--item左边的Icon-->
-                    <ImageView
-                        android:id="@+id/admin_left_icon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@mipmap/admins"/>
-
-                    <!--item中间部分的文字-->
-                    <TextView
-                        android:id="@+id/admin_text_content"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_weight="1"
-                        android:textSize="16sp"
-                        android:text="管理员账户管理"/>
+          <!--item中间部分的文字-->
+          <TextView
+              android:id="@+id/setting_text_content"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="12dp"
+              android:layout_weight="1"
+              android:textSize="16sp"
+              android:text="设置"/>
 
 
 
-                    <!--item右边的文字-->
-                    <TextView
-                        android:id="@+id/admin_right_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp" />
+          <!--item右边的文字-->
+          <TextView
+              android:id="@+id/seting_right_text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="14sp" />
 
-                    <!--item右边的Icon 默认是向右的箭头-->
-                    <ImageView
-                        android:id="@+id/admin_right_icon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@mipmap/homepage_right_arrow" />
-                </LinearLayout>
+          <!--item右边的Icon 默认是向右的箭头-->
+          <ImageView
+              android:id="@+id/setting_right_icon"
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@mipmap/homepage_right_arrow" />
+        </LinearLayout>
 
-                <!--下分割线-->
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1px"
-                    android:background="#E0E0E0" />
+        <!--下分割线-->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#E0E0E0" />
 
-                <!--游客部分的容器-->
-                <LinearLayout
-                    android:id="@+id/ll_root2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp">
-
-                    <!--item左边的Icon-->
-                    <ImageView
-                        android:id="@+id/user_left_icon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@mipmap/users"/>
-
-                    <!--item中间部分的文字-->
-                    <TextView
-                        android:id="@+id/user_text_content"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_weight="1"
-                        android:textSize="16sp"
-                        android:text="游客账户管理"/>
-
-
-                    <!--item右边的文字-->
-                    <TextView
-                        android:id="@+id/user_right_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp" />
-
-                    <!--item右边的Icon 默认是向右的箭头-->
-                    <ImageView
-                        android:id="@+id/user_right_icon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@mipmap/homepage_right_arrow" />
-                </LinearLayout>
-
-                <!--下分割线-->
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1px"
-                    android:background="#E0E0E0" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+        <!--关于部分的容器-->
+        <LinearLayout
+            android:id="@+id/ll_root4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="5dp"
-            app:cardElevation="1dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true">
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!--管理员部分的容器-->
-                <LinearLayout
-                    android:id="@+id/ll_root3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp">
+          <!--item左边的Icon-->
+          <ImageView
+              android:id="@+id/about_left_icon"
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@mipmap/about_icon"/>
 
-                    <!--item左边的Icon-->
-                    <ImageView
-                        android:id="@+id/setting_left_icon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@mipmap/setting_icon"/>
+          <!--item中间部分的文字-->
+          <TextView
+              android:id="@+id/about_text_content"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="12dp"
+              android:layout_weight="1"
+              android:textSize="16sp"
+              android:text="关于"/>
 
-                    <!--item中间部分的文字-->
-                    <TextView
-                        android:id="@+id/setting_text_content"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_weight="1"
-                        android:textSize="16sp"
-                        android:text="设置"/>
+          <!--item右边的文字-->
+          <TextView
+              android:id="@+id/about_right_text"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="14sp" />
 
+          <!--item右边的Icon 默认是向右的箭头-->
+          <ImageView
+              android:id="@+id/about_right_icon"
+              android:layout_width="25dp"
+              android:layout_height="25dp"
+              android:src="@mipmap/homepage_right_arrow" />
+        </LinearLayout>
 
+        <!--下分割线-->
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#E0E0E0" />
+      </LinearLayout>
 
-                    <!--item右边的文字-->
-                    <TextView
-                        android:id="@+id/seting_right_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp" />
-
-                    <!--item右边的Icon 默认是向右的箭头-->
-                    <ImageView
-                        android:id="@+id/setting_right_icon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@mipmap/homepage_right_arrow" />
-                </LinearLayout>
-
-                <!--下分割线-->
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1px"
-                    android:background="#E0E0E0" />
-
-                <!--关于部分的容器-->
-                <LinearLayout
-                    android:id="@+id/ll_root4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:paddingTop="10dp">
-
-                    <!--item左边的Icon-->
-                    <ImageView
-                        android:id="@+id/about_left_icon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@mipmap/about_icon"/>
-
-                    <!--item中间部分的文字-->
-                    <TextView
-                        android:id="@+id/about_text_content"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_weight="1"
-                        android:textSize="16sp"
-                        android:text="关于"/>
-
-                    <!--item右边的文字-->
-                    <TextView
-                        android:id="@+id/about_right_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp" />
-
-                    <!--item右边的Icon 默认是向右的箭头-->
-                    <ImageView
-                        android:id="@+id/about_right_icon"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@mipmap/homepage_right_arrow" />
-                </LinearLayout>
-
-                <!--下分割线-->
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1px"
-                    android:background="#E0E0E0" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
-    </LinearLayout>
+  </LinearLayout>
 </LinearLayout>

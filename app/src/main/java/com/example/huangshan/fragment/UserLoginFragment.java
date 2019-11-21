@@ -26,7 +26,6 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 public class UserLoginFragment extends Fragment {
 
     private View view;
-    private IWXAPI api;
 
 
 
@@ -45,11 +44,6 @@ public class UserLoginFragment extends Fragment {
         weChatLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerToWX();
-                SendAuth.Req req = new SendAuth.Req();
-                req.scope = "snsapi_userinfo";
-                req.state = "wechat_sdk_login";
-                api.sendReq(req);
             }
         });
 //管理员登陆的文字
@@ -78,10 +72,6 @@ public class UserLoginFragment extends Fragment {
 
 
         return view;
-    }
-    private void registerToWX(){
-        api = WXAPIFactory.createWXAPI(this.getActivity(), Constant.APP_ID_WX,true);
-        api.registerApp(Constant.APP_ID_WX);
     }
 
 }

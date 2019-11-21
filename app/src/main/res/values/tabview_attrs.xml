@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="TabView">
-    <!--变色最终显示的颜色-->
-    <attr name="tabColor" format="color|integer"></attr>
-    <!--默认显示的轮廓图-->
-    <attr name="tabImage" format="reference" />
-    <!--选中后的图-->
-    <attr name="tabSelectedImage" format="reference" />
-    <!--显示的标题-->
-    <attr name="tabTitle" format="string|reference" />
+        <!--变色最终显示的颜色-->
+        <attr name="tabColor" format="color|integer"></attr>
+        <!--默认显示的轮廓图-->
+        <attr name="tabImage" format="reference" />
+        <!--选中后的图-->
+        <attr name="tabSelectedImage" format="reference" />
+        <!--显示的标题-->
+        <attr name="tabTitle" format="string|reference" />
     </declare-styleable>
 </resources>

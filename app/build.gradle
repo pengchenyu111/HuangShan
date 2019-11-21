@@ -9,7 +9,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        manifestPlaceholders = [UMENG_CHANNEL_VALUE : "default"]
+        manifestPlaceholders = [UMENG_CHANNEL_VALUE: "default"]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
@@ -20,7 +20,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -67,4 +67,8 @@ dependencies {
     // SwipeLayout 开源侧滑工具
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+    // SweetAlertDialog    提示框
+    implementation project(path: ':sweetalertlibrary')
+
+
 }

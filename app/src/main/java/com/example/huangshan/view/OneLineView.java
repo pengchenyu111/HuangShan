@@ -65,7 +65,7 @@ public class OneLineView extends LinearLayout {
         this.onRootClickListener = listener;
     }
     public interface OnRootClickListener{
-         void onRootClick(View view);
+        void onRootClick(View view);
     }
 
     private static final String TAG = "OneLineView";
@@ -148,7 +148,7 @@ public class OneLineView extends LinearLayout {
                         bottomDivider.setVisibility(GONE);
                     }
                     break;
-                    default:break;
+                default:break;
             }
 
         }

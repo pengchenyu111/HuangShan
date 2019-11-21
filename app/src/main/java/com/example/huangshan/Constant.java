@@ -5,12 +5,11 @@ package com.example.huangshan;
  */
 public class Constant {
 
-    public static final String APP_ID_WX= "";//todo
-
-    public static  final String APP_SECRET_WX="";//todo
-
 //    服务器的IP地址
     public static final String URL = "http://192.168.43.232:8080/HuangShanServer/";
+
+//    服务器保存用户头像的地址
+    public static final String URL_HEADICONS = "http://192.168.43.232:8080/HuangShan/UserHeadIcons/";
 
 //    必应每日一图，用来当天气的背景
     public static final String BING_PIC = "http://guolin.tech/api/bing_pic";
@@ -28,4 +27,14 @@ public class Constant {
 //    POI检索表
 //    风景名胜/风景名胜/风景名胜
     public static final String POI_SCENERY = "110200";
+//    风景名胜/风景名胜相关/旅游景点
+    public static final String POI_TOURIST_ATTRACTION = "110000";
+//    风景名胜/风景名胜相关/世界遗产
+    public static final String POI_WORLD_HERITAGE = "110201";
+//    风景名胜/风景名胜相关/国家级景点
+    public static final String POI_NATIONAL_VIEW= "110202";
+//    风景名胜/风景名胜相关/省级景点
+    public static final String POI_PROVINCE_VIEW= "110203";
+//    风景名胜/风景名胜相关/观景点
+    public static final String POI_VIEW_POINT= "110209";
 }

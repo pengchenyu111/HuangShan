@@ -66,11 +66,6 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     //    forecast 在下面写否则要出错
     @BindView(R.id.forecast_layout)
     LinearLayout linearLayout;
-//    @BindView(R.id.weather_forecast_date) TextView forecastDate;
-//    @BindView(R.id.weather_forecast_cond_txt_d) TextView condTxtD;
-//    @BindView(R.id.weather_forecast_tmp_max) TextView tmpMax;
-//    @BindView(R.id.weather_forecast_tmp_min) TextView tmpMin;
-
     //    lifestyle
     @BindView(R.id.weather_life_comf)
     TextView comf;

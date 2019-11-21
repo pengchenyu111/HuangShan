@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".fragment.BaseFragment">
 
-    <TextView
-        android:id="@+id/fragment_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:textSize="30sp"/>
+  <TextView
+      android:id="@+id/fragment_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:textSize="30sp"/>
 
 </RelativeLayout>

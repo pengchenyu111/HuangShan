@@ -34,22 +34,22 @@ public class HttpUtil {
     public static final String baseUrl = Constant.URL;
     private static Map<String, List<Cookie>> cookieStore = new HashMap<>();
 
-//    创建线程池
+    //    创建线程池
     private static ExecutorService threadPool = Executors.newFixedThreadPool(30);
-//    创建默认的OkHttpClient对象
+    //    创建默认的OkHttpClient对象
     private static OkHttpClient okHttpClient = new OkHttpClient.Builder().cookieJar(new CookieJar() {
-    @Override
-    public void saveFromResponse(@NotNull HttpUrl httpUrl, @NotNull List<Cookie> list) {
-        cookieStore.put(httpUrl.host(),list);
-    }
+        @Override
+        public void saveFromResponse(@NotNull HttpUrl httpUrl, @NotNull List<Cookie> list) {
+            cookieStore.put(httpUrl.host(),list);
+        }
 
-    @NotNull
-    @Override
-    public List<Cookie> loadForRequest(@NotNull HttpUrl httpUrl) {
-        List<Cookie> cookies = cookieStore.get(httpUrl.host());
-        return cookies == null ? new ArrayList<Cookie>() : cookies;
-    }
-}).build();
+        @NotNull
+        @Override
+        public List<Cookie> loadForRequest(@NotNull HttpUrl httpUrl) {
+            List<Cookie> cookies = cookieStore.get(httpUrl.host());
+            return cookies == null ? new ArrayList<Cookie>() : cookies;
+        }
+    }).build();
 
 
     public static String getRequest(final String url)throws Exception{

@@ -30,14 +30,14 @@ public class MyInfoWindowAdapter implements AMap.InfoWindowAdapter {
         latLng = marker.getPosition();
         snippet = marker.getSnippet();
         adInfo = marker.getTitle();
-        Log.d(TAG,adInfo+","+snippet+","+latLng.latitude+","+latLng.longitude);
+        String[] temp = snippet.split(",");
 
 //        加载infowindow的布局
         View view = LayoutInflater.from(context).inflate(R.layout.layout_infowindow,null);
         TextView title = (TextView)view.findViewById(R.id.infowindow_title);
         TextView adminName = (TextView)view.findViewById(R.id.infowindow_adminName);
-        title.setText(adInfo);//todo 数据库设置
-        adminName.setText("彭陈宇");//todo 数据库获取负责人的信息
+        title.setText(adInfo);
+        adminName.setText(temp[0]);
 
         return view;
     }

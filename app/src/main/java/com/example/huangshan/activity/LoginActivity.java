@@ -52,7 +52,7 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-//    返回重启加载
+    //    返回重启加载
     @Override
     protected void onRestart() {
         super.onRestart();

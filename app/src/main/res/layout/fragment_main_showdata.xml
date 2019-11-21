@@ -4,25 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="天气测试"
-        android:textSize="25dp"/>
+  <Button
+      android:id="@+id/weather"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="天气测试"
+      android:textSize="25dp"/>
 
-    <Button
-        android:id="@+id/admins_map_view_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="管理员分景点展示"
-        android:textSize="25dp"/>
+  <Button
+      android:id="@+id/admins_map_view_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="管理员分景点展示"
+      android:textSize="25dp"/>
 
-    <Button
-        android:id="@+id/login_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登录测试"
-        android:textSize="25dp"/>
+  <Button
+      android:id="@+id/login_test"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="登录测试"
+      android:textSize="25dp"/>
 
 </LinearLayout>

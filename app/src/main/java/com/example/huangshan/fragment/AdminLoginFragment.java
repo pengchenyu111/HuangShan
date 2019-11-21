@@ -16,7 +16,7 @@ import com.example.huangshan.Constant;
 import com.example.huangshan.view.CustomVideoView;
 import com.example.huangshan.utils.HttpUtil;
 import com.example.huangshan.R;
-import com.example.huangshan.bean.LoginMsg;
+import com.example.huangshan.bean.ResultMessage;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -61,7 +61,7 @@ public class AdminLoginFragment extends Fragment {
                     String result = adminLogin(adminAccount,adminPassword);
 //                    反序列化为LoginMsg对象
                     Gson gson = new Gson();
-                    LoginMsg msg = gson.fromJson(result,LoginMsg.class);
+                    ResultMessage msg = gson.fromJson(result, ResultMessage.class);
 
                     String resultCode = msg.getResultCode();
                     if ("001".equals(resultCode)){

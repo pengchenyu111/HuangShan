@@ -7,46 +7,46 @@
     android:background="@color/colorPrimary"
     tools:context=".activity.WeatherActivity">
 
-    <ImageView
-        android:id="@+id/weather_bcg_pic"
+  <ImageView
+      android:id="@+id/weather_bcg_pic"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scaleType="centerCrop"/>
+
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+      android:id="@+id/weather_refresh"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/weather_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
+        android:scrollbars="none"
+        android:overScrollMode="never">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/weather_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+      <LinearLayout
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:fitsSystemWindows="true">
 
-        <ScrollView
-            android:id="@+id/weather_scrollview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:overScrollMode="never">
+        <include layout="@layout/weather_title"/>
+        <include layout="@layout/weather_now" />
+        <include layout="@layout/weather_tips"/>
+        <include layout="@layout/weather_forecast"/>
+        <include layout="@layout/weather_suggestion"/>
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="天气数据由 和风天气 支持"
+            android:textColor="#fff" />
+      </LinearLayout>
+    </ScrollView>
 
-                <include layout="@layout/weather_title"/>
-                <include layout="@layout/weather_now" />
-                <include layout="@layout/weather_tips"/>
-                <include layout="@layout/weather_forecast"/>
-                <include layout="@layout/weather_suggestion"/>
-
-                <TextView
-                    android:layout_marginTop="20dp"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="天气数据由 和风天气 支持"
-                    android:textColor="#fff" />
-            </LinearLayout>
-        </ScrollView>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

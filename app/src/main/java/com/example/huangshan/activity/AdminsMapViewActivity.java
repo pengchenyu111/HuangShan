@@ -1,7 +1,6 @@
 package com.example.huangshan.activity;
 
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -16,16 +15,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.cardview.widget.CardView;
-
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.AMapOptions;
 import com.amap.api.maps.CameraUpdateFactory;
-import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
 
@@ -35,21 +28,23 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
-import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.core.PoiItem;
-import com.amap.api.services.core.SuggestionCity;
-import com.amap.api.services.poisearch.PoiResult;
-import com.amap.api.services.poisearch.PoiSearch;
+import com.bumptech.glide.Glide;
 import com.example.huangshan.Constant;
 import com.example.huangshan.R;
 import com.example.huangshan.adapter.MyInfoWindowAdapter;
+import com.example.huangshan.bean.OneAdminManage;
+import com.example.huangshan.utils.HttpUtil;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnPoiSearchListener,View.OnClickListener, AMap.OnMarkerClickListener {
+public class AdminsMapViewActivity extends BaseActivity implements View.OnClickListener, AMap.OnMarkerClickListener {
 
     @BindView(R.id.admins_map_view_back_btn)
     ImageView adminMapBackBtn;
@@ -61,18 +56,12 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
     private static final String TAG = "AdminsMapViewActivity";
     private AMap aMap;
     private UiSettings uiSettings;
-    private PoiSearch.Query query;
-    private PoiSearch search;
-    private PoiResult poiResult;
     private MyInfoWindowAdapter adapter;
     private PopupWindow mPopupWindow;
+    private List<OneAdminManage> adminManageList = new ArrayList<>();
+    private OneAdminManage currentAdminManage;
+    private Bundle bundle;
 
-    //定位需要的声明
-    private AMapLocationClient mLocationClient = null;                //定位发起端
-    private AMapLocationClientOption mLocationOption = null;          //定位参数
-    private LocationSource.OnLocationChangedListener mListener = null;//定位监听器
-    //标识，用于判断是否只显示一次定位信息和用户重新定位
-    private boolean isFirstLoc = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,17 +74,34 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
         showAdminList.setOnClickListener(this::onClick);
 
         mapView.onCreate(savedInstanceState);
+        bundle = savedInstanceState;
 
-        initMapView(savedInstanceState);
+        //初始化：从数据库获取负责人的信息
+        initData();
 
-        //todo 初始化：从数据库获取负责人的信息，再展示Marker和PopUpWindow
+        //初始化地图
+        initMapView();
+    }
 
+    private void initData() {
+        String url = Constant.URL+"AllAdminsServlet";
+        try {
+            //发网络请求，获取String 结果集
+            String result = HttpUtil.getRequest(url);
+
+            //转成实体对象,并写到List里
+            Gson gson = new Gson();
+            //由于返回的数据和一个很多条管理信息组成的数组，所以不能单纯用 ：gson.fromJson(result,OneAdminManage.class)
+            adminManageList = gson.fromJson(result,new TypeToken<List<OneAdminManage>>(){}.getType());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * 初始化地图
      */
-    private void initMapView(Bundle savedInstanceState) {
+    private void initMapView() {
 
 //        获得地图
         aMap = mapView.getMap();
@@ -123,6 +129,7 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
         myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE_NO_CENTER);
         myLocationStyle.strokeColor(Color.argb(0,0,0,0));//精度圈 圈框隐藏
         myLocationStyle.radiusFillColor(Color.argb(0,0,0,0));//精度圈 圈范围隐藏
+
         aMap.setMyLocationStyle(myLocationStyle);
 //        设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false
         aMap.setMyLocationEnabled(true);
@@ -131,99 +138,52 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
         aMap.setInfoWindowAdapter(adapter);
         aMap.setOnMarkerClickListener(this::onMarkerClick);
 
-        searchPOI();
+        drawMarkers(adminManageList);
     }
+
 
     /**
-     * 通过POI检索出黄山的景点
-     */
-    private void searchPOI(){
-        // 参数一： 表示搜索字符串，
-        //参数二 ：表示POI搜索类型，二者选填其一，选用POI搜索类型时建议填写类型代码
-        //参数三 ：表示POI搜索区域，可以是城市编码也可以是城市名称，也可以传空字符串，空字符串代表全国在全国范围内进行搜索
-        query = new PoiSearch.Query("",Constant.POI_SCENERY,Constant.HUANGSHAN_ADCODE);
-//        设置每页最多返回多少条poiitem,和当前页码
-        query.setPageSize(30);
-        query.setPageNum(1);
-        query.setCityLimit(true);
-        search = new PoiSearch(this,query);
-        search.setOnPoiSearchListener(this);
-//        设置周边范围
-//        search.setBound(new PoiSearch.SearchBound(new LatLonPoint(Constant.HUANGSHAN_LATITUDE,Constant.HUANGSHAN_LATITUDE),5000,true));
-        search.searchPOIAsyn();
-    }
-
-    /**
-     * 以下为OnPoiSearchListener 接口要求重写的方法
-     * onPoiSearched 为关键字检索、周边检索、多边形内检索 才写
-     * onPoiItemSearched 为ID检索 才写
-     */
-    @Override
-    public void onPoiSearched(PoiResult result, int i) {
-        if (i == 1000){
-           if (result !=null && result.getQuery() != null){
-               if (result.getQuery().equals(query)){
-                   poiResult = result;
-
-                   List<PoiItem> poiItems = poiResult.getPois();
-                   List<SuggestionCity> suggestionCities = poiResult.getSearchSuggestionCitys();
-                   Log.d(TAG,"002,"+poiResult.getPageCount()+","+poiResult.getPois().size());
-                   Log.d(TAG,"003,"+suggestionCities.size());
-
-                   if (poiItems != null && poiItems.size()>0){
-                       drawMarkers(poiItems);
-                   }else{
-                       Log.d(TAG,"POI检索无结果");
-                   }
-               }
-           }
-        }else{
-            Log.d(TAG,"POI检索错误，错误码为： "+ i);
-            Toast.makeText(AdminsMapViewActivity.this,"景点信息获取错误，请稍后再试",Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    @Override
-    public void onPoiItemSearched(PoiItem poiItem, int i) {
-    }
-
-    /**
-     *
      * 画自定义的 Marker
-     * 这里是根据POI检索的结果画的
+     * 这里是根据数据库检索的结果画的
      */
-    private void drawMarkers(List<PoiItem> poiItems){
-        Log.d(TAG,"004,"+poiItems.size());
-        for (int i =0;i < poiItems.size();i++){
+    private void drawMarkers(List<OneAdminManage> adminManages){
+
+        for (int i =0;i < adminManages.size();i++){
             MarkerOptions markerOptions = new MarkerOptions();
-            PoiItem poiItem = poiItems.get(i);
-            LatLonPoint latLonPoint = poiItem.getLatLonPoint();//获得每一个检索结果的中心点
-            LatLng latLng = new LatLng(latLonPoint.getLatitude(),latLonPoint.getLongitude());
+            OneAdminManage oneAdminManage = adminManages.get(i);
+
+            LatLng latLng = new LatLng(Double.parseDouble(oneAdminManage.getScenicLatitude()),Double.parseDouble(oneAdminManage.getScenicLongitude()));
             markerOptions.position(latLng);// Marker的位置
-            markerOptions.title(poiItem.getTitle());// Marker的标题
-            markerOptions.snippet(poiItem.getTitle()+","+poiItem.getLatLonPoint().getLatitude()+","+poiItem.getLatLonPoint().getLongitude());//Marker的内容
+            markerOptions.title(oneAdminManage.getScenicName());// Marker的标题
+
+            //由于高德地图的marker 没有携带其他信息的方法，所以我只能将信息封装到snippet中，到时候通过split分割了
+            markerOptions.snippet(oneAdminManage.getAdminName()+","+oneAdminManage.getAdminWorkYear()+","+oneAdminManage.getAdminAccount()+","+oneAdminManage.getScenicId());//Marker的内容
             markerOptions.draggable(false);//设置可拖动
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(),R.mipmap.maker_admin)));//加上图标
             markerOptions.setFlat(true);//设置marker平贴地图效果
+
             Marker marker = aMap.addMarker(markerOptions);
-
-
-            Log.d(TAG,poiItem.getTitle()+","+poiItem.getLatLonPoint().getLatitude()+","+poiItem.getLatLonPoint().getLongitude()+","+poiItem.getPoiId());
         }
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Log.d(TAG,"点击了Marker");
-        showPopUpWindow(marker);
+        // 获取marker 的snippet中携带的内容
+        String info = marker.getSnippet();
+        String[] temp = info.split(",");
 
+        //检索出当前的OneAdminMenage
+        for (int i = 0, n = adminManageList.size();i< n;i++){
+            if (adminManageList.get(i).getAdminAccount().equals(temp[2]) && adminManageList.get(i).getScenicId().equals(temp[3])){
+                currentAdminManage = adminManageList.get(i);
+                break;
+            }
+        }
+        showPopUpWindow(currentAdminManage);
         return false;
     }
 
-    private void showPopUpWindow(Marker marker) {
-        Log.d(TAG,"开始绘制popupwindow");
-
+    private void showPopUpWindow(OneAdminManage adminManage) {
         // 绘制前先清除之前的popupwindow，否则内存泄漏
         if (mPopupWindow != null){
             mPopupWindow.dismiss();
@@ -248,13 +208,16 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
         LinearLayout adminInfo = (LinearLayout)popupwindowView.findViewById(R.id.lookover_admin_info);//详情按钮
         LinearLayout callAdmin = (LinearLayout)popupwindowView.findViewById(R.id.call_admin);//打电话按钮
 
+        //设置响应
         closePop.setOnClickListener(this::onClick);
         adminInfo.setOnClickListener(this::onClick);
         callAdmin.setOnClickListener(this::onClick);
 
-        adminName.setText("萧何");//todo
-        adminManagedSpot.setText(marker.getTitle());
-        adminWorkTime.setText("工作三年");//todo
+        //显示在界面上
+        Glide.with(this).load(Constant.URL_HEADICONS+"15982295274.png").into(adminHeadIcon);//todo 加载头像
+        adminName.setText(adminManage.getAdminName());
+        adminManagedSpot.setText(adminManage.getScenicName());
+        adminWorkTime.setText("工作经验"+adminManage.getAdminWorkYear()+"年");
     }
 
     @Override
@@ -281,52 +244,31 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
                 break;
             case R.id.lookover_admin_info:
                 //弹出窗中点击获取管理员的详细信息
+                turnToAdminInfo();
                 break;//todo
             default:break;
         }
     }
 
+    private void turnToAdminInfo() {
+        Intent intent = new Intent(this, AdminInformationActivity.class);
+        intent.putExtra("currentAdminManage",currentAdminManage);
+        startActivity(intent);
+    }
+
     private void turnToListAdminActivity() {
         Intent intent = new Intent(AdminsMapViewActivity.this, ListAdminsActivity.class);
+        intent.putExtra("allAdmins", (Serializable) adminManageList);
         startActivity(intent);
     }
 
     private void callAdmin() {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:18224464804"));//todo
+        String url = "tel:"+currentAdminManage.getAdminPhone();
+        intent.setData(Uri.parse(url));
         startActivity(intent);
     }
-
-//    /**
-//     * 逆地址编码 ：通过经纬度获得地区的详细描述
-//     * GeocodeSearch.OnGeocodeSearchListener 接口要求重写的两个方法之一
-//     * @param regeocodeResult
-//     * @param i
-//     */
-//    @Override
-//    public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
-//
-//    }
-//
-//    /**
-//     *   地址编码 ：通过输入地址信息获得经纬度
-//     * GeocodeSearch.OnGeocodeSearchListener 接口要求重写的两个方法之一
-//     * @param geocodeResult 解析获得坐标信息
-//     * @param i  返回码 1000为成功
-//     */
-//    @Override
-//    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
-//        if (i == 1000){
-//            int size = geocodeResult.getGeocodeAddressList().size();
-//            double latitude = geocodeResult.getGeocodeAddressList().get(0).getLatLonPoint().getLatitude();
-//            double longititude = geocodeResult.getGeocodeAddressList().get(0).getLatLonPoint().getLongitude();
-//            Log.d(TAG,latitude+","+longititude+","+size);
-//        }else{
-//            Toast.makeText(this,"获取地址信息错误",Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
 
     /**
      * 以下重写的方法是控制地图的生命周期，因为地图占的内存相当大
@@ -347,7 +289,13 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
     protected void onResume() {
         super.onResume();
         //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
-        mapView.onResume();
+        mapView.onDestroy();
+        mapView.onCreate(bundle);
+        Log.d(TAG,"调用了一次Resume方法!");//todo 要解决刷新问题
+        initData();
+        Log.d(TAG,"调用了一次initData方法!");
+        initMapView();
+        Log.d(TAG,"调用了一次initMapView方法!");
     }
 
     @Override
@@ -357,11 +305,11 @@ public class AdminsMapViewActivity extends BaseActivity implements PoiSearch.OnP
         mapView.onPause();
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
-        mapView.onSaveInstanceState(outState);
-    }
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
+//        mapView.onSaveInstanceState(outState);
+//    }
 
 }

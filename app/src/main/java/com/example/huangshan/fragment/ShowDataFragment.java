@@ -64,8 +64,8 @@ public class ShowDataFragment extends Fragment implements View.OnClickListener{
                 Intent intent2 = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent2);
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
     }
 }

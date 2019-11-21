@@ -59,7 +59,9 @@
                 android:id="@+id/item_info_root"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="3dp"
                 android:background="#0000"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="1dp"
@@ -97,9 +99,9 @@
                         android:id="@+id/admin_list_spot"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="120dp"
-                        android:textSize="16dp" />
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="70dp"
+                        android:textSize="14dp" />
 
 
 
