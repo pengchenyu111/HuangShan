@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AboutActivity">
+
+    <ImageView
+        android:id="@+id/about_back_btn"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/icon_back_black" />
+
+    <ImageView
+        android:id="@+id/about_icon"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/about_coder"
+        android:layout_gravity="center"
+        android:layout_marginBottom="100dp"/>
+
+    <TextView
+        android:id="@+id/about_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:text="开发团队"
+        android:textColor="#000000" />
+    <TextView
+        android:id="@+id/about_team"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="45dp"
+        android:text="彭陈宇  张航  吴子沁  刘雨"
+        android:textColor="#000000"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/hfut"/>
+        <TextView
+            android:id="@+id/school_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="合肥工业大学"
+            android:textSize="15sp"
+            android:textColor="#000000"/>
+
+    </LinearLayout>
+
+
+</FrameLayout>

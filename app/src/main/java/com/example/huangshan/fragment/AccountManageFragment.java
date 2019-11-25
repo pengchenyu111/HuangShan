@@ -16,8 +16,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.huangshan.R;
+import com.example.huangshan.activity.AboutActivity;
 import com.example.huangshan.activity.AdminsMapViewActivity;
 import com.example.huangshan.activity.LoginActivity;
+import com.example.huangshan.activity.SettingsActivity;
 import com.example.huangshan.activity.UsersManageActivity;
 import com.example.huangshan.view.OneLineView;
 
@@ -79,10 +81,12 @@ public class AccountManageFragment extends Fragment implements View.OnClickListe
         startActivity(intent1);
         break;
       case R.id.ll_root3:
-        Toast.makeText(getActivity(),"点击了设置",Toast.LENGTH_SHORT).show();
+        Intent intent2 = new Intent(getActivity(), SettingsActivity.class);
+        startActivity(intent2);
         break;
       case R.id.ll_root4:
-        Toast.makeText(getActivity(),"点击了关于",Toast.LENGTH_SHORT).show();
+        Intent intent3 = new Intent(getActivity(), AboutActivity.class);
+        startActivity(intent3);
         break;
       default:break;
 

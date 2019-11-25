@@ -69,6 +69,10 @@ dependencies {
     implementation "com.daimajia.swipelayout:library:1.2.0@aar"
     // SweetAlertDialog    提示框
     implementation project(path: ':sweetalertlibrary')
+    //MPAndroidharts 图表库
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    //浮动按钮 boommenubutton
+    implementation 'com.nightonke:boommenu:2.1.1'
 
 
 }

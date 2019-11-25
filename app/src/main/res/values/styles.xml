@@ -9,5 +9,8 @@
   </style>
 
   <style name="MyToolbarTheme" parent="AppTheme"></style>
+  <style name="SplashActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowBackground">@mipmap/wallpaper_huangshan5</item>
+  </style>
 
 </resources>
