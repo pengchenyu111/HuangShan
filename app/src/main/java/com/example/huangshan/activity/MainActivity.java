@@ -11,6 +11,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.huangshan.R;
+import com.example.huangshan.bean.Admin;
 import com.example.huangshan.fragment.PredictFragment;
 import com.example.huangshan.fragment.NotificationFragment;
 import com.example.huangshan.fragment.ShowDataFragment;
@@ -39,7 +41,6 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 //    代替findViewById方法
-
     @BindView(R.id.viewpager) ViewPager mViewPager;
 
     @BindArray(R.array.tab_array) String[] mTabTitles;
@@ -54,6 +55,8 @@ public class MainActivity extends BaseActivity {
 
     private List<TabView> mTabViews = new ArrayList<>();
     private List<Fragment> fragmentsCollector = new ArrayList<>();
+    private Admin currentAdmin;
+    private Bundle bundle = new Bundle();
 
     private static final int INDEX_SHOWDATA = 0;
     private static final int INDEX_PREDICT = 1;
@@ -68,6 +71,7 @@ public class MainActivity extends BaseActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.READ_PHONE_STATE
     };
+    private static final String TAG = "MainActivity";
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -111,8 +115,12 @@ public class MainActivity extends BaseActivity {
 
         ButterKnife.bind(this);
 
+        //权限请求
         askPermissions();
-
+        //获取从LoginFragment传过来的Admin
+        currentAdmin = (Admin) this.getIntent().getSerializableExtra("currentAdmin");
+        Log.d(TAG,currentAdmin+"");
+        bundle.putSerializable("currentAdmin",currentAdmin);
         initFragmentCollector();
 
         mTabViews.add(mTabShowData);
@@ -145,6 +153,10 @@ public class MainActivity extends BaseActivity {
         Fragment fragment2 = new PredictFragment();
         Fragment fragment3 = new NotificationFragment();
         Fragment fragment4 = new AccountManageFragment();
+        fragment1.setArguments(bundle);
+        fragment2.setArguments(bundle);
+        fragment3.setArguments(bundle);
+        fragment4.setArguments(bundle);
         fragmentsCollector.add(fragment1);
         fragmentsCollector.add(fragment2);
         fragmentsCollector.add(fragment3);

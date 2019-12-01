@@ -62,6 +62,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     //    和风天气SDK
     implementation files('libs/HeWeather_Public_Android_V3.1.jar')
+    //    和风天气插件
+    implementation files('libs/HeWeather_Plugin_SDK_Android_V1.2.jar')
     //      高德地图SDK
     implementation files('libs/AMap3DMap_6.9.4_AMapNavi_6.9.1_AMapSearch_6.9.2_AMapTrack_1.1.0_AMapLocation_4.7.0_20190831.jar')
     // SwipeLayout 开源侧滑工具
@@ -73,6 +75,8 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     //浮动按钮 boommenubutton
     implementation 'com.nightonke:boommenu:2.1.1'
+    //轮播图 banner
+    implementation 'com.youth.banner:banner:1.4.10'
 
 
 }

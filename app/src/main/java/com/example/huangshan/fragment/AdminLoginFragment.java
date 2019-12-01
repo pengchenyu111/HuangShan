@@ -1,7 +1,10 @@
 package com.example.huangshan.fragment;
 
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,9 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.example.huangshan.Constant;
+import com.example.huangshan.activity.MainActivity;
+import com.example.huangshan.bean.Admin;
+import com.example.huangshan.bean.LoginMessage;
 import com.example.huangshan.view.CustomVideoView;
 import com.example.huangshan.utils.HttpUtil;
 import com.example.huangshan.R;
@@ -21,6 +27,8 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 /**
@@ -61,11 +69,36 @@ public class AdminLoginFragment extends Fragment {
                     String result = adminLogin(adminAccount,adminPassword);
 //                    反序列化为LoginMsg对象
                     Gson gson = new Gson();
-                    ResultMessage msg = gson.fromJson(result, ResultMessage.class);
+                    LoginMessage msg = gson.fromJson(result, LoginMessage.class);
+                    Log.d(TAG,msg+"");
 
                     String resultCode = msg.getResultCode();
                     if ("001".equals(resultCode)){
                         Toast.makeText(getActivity(),"登录成功",Toast.LENGTH_SHORT).show();
+
+                        Admin currentAdmin = new Admin(msg.getAdminAccount(),msg.getAdminPassword(),msg.getAdminName(),
+                                msg.getAdminSex(),msg.getAdminAge(),msg.getAdminWorkYear(),msg.getAdminPhone(),
+                                msg.getAdminIntroduction(),msg.getAdminPower());
+                        //写入缓存
+                        SharedPreferences preferences= getActivity().getSharedPreferences("admin", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("adminAccount", currentAdmin.getAdminAccount());
+                        editor.putString("adminPassword", currentAdmin.getAdminPassword());
+                        editor.putString("adminName", currentAdmin.getAdminName());
+                        editor.putString("adminSex", currentAdmin.getAdminSex());
+                        editor.putString("adminAge", String.valueOf(currentAdmin.getAdminAge()));
+                        editor.putString("adminWorkYear", String.valueOf(currentAdmin.getAdminWorkYear()));
+                        editor.putString("adminPhone", currentAdmin.getAdminPhone());
+                        editor.putString("adminIntroduction", currentAdmin.getAdminIntroduction());
+                        editor.putString("adminPower", String.valueOf(currentAdmin.getAdminPower()));
+                        editor.apply();
+
+                        //传送数据
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("currentAdmin",currentAdmin);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                     }else if ("002".equals(resultCode)){
                         Toast.makeText(getActivity(),"账号或密码错误",Toast.LENGTH_SHORT).show();
                     }else if ("003".equals(resultCode)){
@@ -99,11 +132,6 @@ public class AdminLoginFragment extends Fragment {
 //        发请求
         String url = Constant.URL + "AdminLoginServlet";
         return HttpUtil.postRequest(url,map);
-
-//        若使用GET方式
-//        String url = Constant.URL+"LoginServlet?account="+adminAccount+"&password="+adminPassword+"";
-//        Log.d(TAG,url);
-//        return HttpUtil.getRequest(url);
     }
 
 }

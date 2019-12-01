@@ -30,7 +30,7 @@ public class SplashActivity extends BaseActivity {
             public void run() {
                 try {
                     sleep(1000);//休眠一秒,即展示图片一秒
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                     finish();//关闭当前活动
                 } catch (Exception e) {

@@ -45,7 +45,7 @@ import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 
 public class WeatherActivity extends BaseActivity implements View.OnClickListener {
 
-    //    title
+    //    titleEditText
     @BindView(R.id.weather_title_backbtn)
     ImageView backBtn;
     @BindView(R.id.weather_title)
@@ -163,7 +163,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
      */
     private void getWeatherData() {
 //       获取now
-        HeWeather.getWeatherNow(WeatherActivity.this, "CN101221008", Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherNowBeanListener() {
+        HeWeather.getWeatherNow(WeatherActivity.this, Constant.HEFENGWEATHER_LOCATION_HUANGSHAN_GUANGMINGDING, Lang.CHINESE_SIMPLIFIED, Unit.METRIC, new HeWeather.OnResultWeatherNowBeanListener() {
             @Override
             public void onError(Throwable throwable) {
                 Log.i(TAG, "Weather Now onError: ", throwable);
@@ -179,7 +179,7 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
                     nowBase = now.getNow();
                     basic = now.getBasic();
                     update = now.getUpdate();
-                    //        title
+                    //        titleEditText
                     title.setText(basic.getLocation());
                     updateTime.setText(update.getLoc().split(" ")[1]);
                     //        now

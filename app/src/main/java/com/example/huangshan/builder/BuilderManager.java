@@ -16,10 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Weiping Huang at 23:44 on 16/11/21
- * For Personal Open Source
- * Contact me at 2584541288@qq.com or nightonke@outlook.com
- * For more projects: https://github.com/Nightonke
+ *
+ * 浮动按钮使用
  */
 public class BuilderManager {
 
