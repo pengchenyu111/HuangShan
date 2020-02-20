@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 24
+        targetSdkVersion 28
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    buildTypes {
+        release {
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.pnikosis:materialish-progress:1.0'
+}

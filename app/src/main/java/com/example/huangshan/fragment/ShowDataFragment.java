@@ -426,6 +426,7 @@ public class ShowDataFragment extends Fragment implements View.OnClickListener, 
             //转为对象
             Gson gson = new Gson();
             dailyNums = gson.fromJson(dailyResult,new TypeToken<List<DailyNum>>(){}.getType());
+            Log.d(TAG,dailyNums.toString());
             Gson gson1 = new Gson();
             hourlyNums = gson1.fromJson(hourlyResult,new TypeToken<List<HourlyNum>>(){}.getType());
 

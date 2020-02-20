@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 /**
  * 这个activity用来展示一个管理员的详细信息
  */
-public class AdminInformationActivity extends BaseActivity {
+public class  AdminInformationActivity extends BaseActivity {
 
     private static final String TAG = "AdminInformationActivit";
 

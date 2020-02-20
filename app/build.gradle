@@ -48,7 +48,7 @@ dependencies {
     //    微信开发工具
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.4.3'
     //    JSON工具
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.code.gson:gson:2.8.6'
     //    网络通信工具
     implementation 'com.squareup.okhttp3:okhttp:4.1.0'
     //    图片圆形化工具
